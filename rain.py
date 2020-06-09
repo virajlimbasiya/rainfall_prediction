@@ -133,9 +133,8 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error as mse
 
 mae = 0
-maei = []
 i = 0
-while(i<ytest.size):
+while(i<ytest.size):            # predicting rainfall of next 14 days
     plt.plot(model.predict(xtest[i:i+14]),color = 'b')
     plt.plot(predy[i:i+14], color = 'r')
     plt.show()
