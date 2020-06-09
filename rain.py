@@ -62,7 +62,7 @@ model1.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=1e-2),loss='spars
 
 from sklearn.utils import class_weight
 class_weights = class_weight.compute_class_weight('balanced',np.unique(y_train),y_train)
-
+# poor learning
 model1.fit(X_train,y_train,batch_size = 10,epochs = 20,class_weight=class_weights,validation_split = 0.142857,verbose = 2)
 
 results = model1.evaluate(X_test, y_test)
@@ -76,8 +76,9 @@ Xt = Xt.reshape(4495,14)
 yt = np.ravel(y)
 yt = yt.reshape(4495,1)
 
-X2,y2 = smote.fit_sample(Xt,y_label)
+#balance class
 
+X2,y2 = smote.fit_sample(Xt,y_label)
 X3,y3 = smote.fit_sample(X2,y2)
 X4,y4 = smote.fit_sample(X3,y3) 
 from sklearn.model_selection import train_test_split as tts
@@ -92,6 +93,8 @@ model2.fit(X_train1,y_train1,batch_size = 10,epochs = 50,validation_split = 0.14
 
 pred = model2.predict(X_test1)
 results = model2.evaluate(X_test1, y_test1)
+
+@finding exact measure of rainfall
 
 from sklearn.preprocessing import MinMaxScaler
 sc = MinMaxScaler(feature_range=(0,1))
