@@ -83,6 +83,8 @@ X3,y3 = smote.fit_sample(X2,y2)
 X4,y4 = smote.fit_sample(X3,y3) 
 from sklearn.model_selection import train_test_split as tts
 X_train1,X_test1,y_train1,y_test1 = tts(X4,y4,train_size = 0.7,random_state=1)
+X_train1 = (X_train1-X_train1.mean())/X_train1.std()
+X_test1 = (X_test1-X_test1.mean())/X_test1.std()
 model2 = build_model()
 
 model2.compile(optimizer='adam',              
